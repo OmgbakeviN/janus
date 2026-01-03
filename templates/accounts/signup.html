@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Créer un compte - Shorty{% endblock %}
+
+{% block content %}
+  <div class="max-w-lg mx-auto">
+    <h1 class="text-3xl font-bold">Créer un compte</h1>
+    <p class="mt-2 text-slate-300">Crée un compte pour gérer tes liens et suivre les clics.</p>
+
+    <form method="post" class="mt-6 space-y-4">
+      {% csrf_token %}
+
+      {% if form.errors %}
+        <div class="p-3 rounded border border-red-700 bg-red-950/40 text-red-200 text-sm">
+          Merci de corriger les erreurs du formulaire.
+        </div>
+      {% endif %}
+
+      <div>
+        <label class="text-sm text-slate-300">Nom d'utilisateur</label>
+        <div class="mt-1">{{ form.username }}</div>
+      </div>
+
+      <div>
+        <label class="text-sm text-slate-300">Mot de passe</label>
+        <div class="mt-1">{{ form.password1 }}</div>
+      </div>
+
+      <div>
+        <label class="text-sm text-slate-300">Confirmer le mot de passe</label>
+        <div class="mt-1">{{ form.password2 }}</div>
+      </div>
+
+      <button class="w-full px-4 py-2 rounded bg-white text-slate-950 font-semibold">
+        Créer mon compte
+      </button>
+    </form>
+
+    <p class="mt-4 text-sm text-slate-300">
+      Déjà un compte ?
+      <a class="underline" href="{% url 'login' %}">Se connecter</a>
+    </p>
+  </div>
+
+  <script>
+    // Styling rapide des inputs Django avec Tailwind
+    document.querySelectorAll("input").forEach(i=>{
+      i.className="w-full px-3 py-2 rounded bg-slate-950 border border-slate-800 text-slate-100";
+    })
+  </script>
+{% endblock %}

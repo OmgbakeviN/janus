@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Tailwind via CDN (parfait pour portfolio) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <title>{% block title %}Shorty{% endblock %}</title>
+</head>
+
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+  <!-- Barre de navigation (sera utile dès qu’on ajoute login/signup) -->
+  <nav class="border-b border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="/" class="font-semibold">Shorty</a>
+
+      <div class="flex gap-3 text-sm">
+          {% if user.is_authenticated %}
+            <a href="/dashboard/" class="text-slate-200 hover:text-white">Dashboard</a>
+            <a href="{% url 'logout' %}" class="text-slate-200 hover:text-white">Logout</a>
+          {% else %}
+            <a href="{% url 'login' %}" class="text-slate-200 hover:text-white">Login</a>
+            <a href="{% url 'accounts:signup' %}" class="text-slate-200 hover:text-white">Sign up</a>
+          {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-6xl mx-auto px-4 py-10">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

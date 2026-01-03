@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Nouveau lien - Shorty{% endblock %}
+
+{% block content %}
+  <div class="max-w-xl">
+    <h1 class="text-3xl font-bold">Nouveau lien</h1>
+    <p class="mt-2 text-slate-300">Colle ton URL et on génère un lien court.</p>
+
+    <form method="post" class="mt-6 space-y-4">
+      {% csrf_token %}
+
+      {% if form.errors %}
+        <div class="p-3 rounded border border-red-700 bg-red-950/40 text-red-200 text-sm">
+          <!-- affiche les erreurs -->
+           {{form.errors}}
+        </div>
+      {% endif %}
+
+      <div>
+        <label class="text-sm text-slate-300">Titre (optionnel)</label>
+        <div class="mt-1">{{ form.title }}</div>
+      </div>
+
+      <div>
+        <label class="text-sm text-slate-300">URL originale</label>
+        <div class="mt-1">{{ form.original_url }}</div>
+      </div>
+
+      <div>
+        <label class="text-sm text-slate-300">Slug personnalisé (optionnel)</label>
+        <div class="mt-1">{{ form.custom_slug }}</div>
+        <p class="text-xs text-slate-400 mt-1">{{ form.custom_slug.help_text }}</p>
+      </div>
+
+      <div class="flex gap-3">
+        <button class="px-4 py-2 rounded bg-white text-slate-950 font-semibold">
+          Créer
+        </button>
+        <a href="{% url 'links:dashboard' %}" class="px-4 py-2 rounded border border-slate-700">
+          Annuler
+        </a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // On applique un style Tailwind sur les champs Django
+    document.querySelectorAll("input").forEach(i=>{
+      i.className="w-full px-3 py-2 rounded bg-slate-950 border border-slate-800 text-slate-100";
+    })
+  </script>
+{% endblock %}
