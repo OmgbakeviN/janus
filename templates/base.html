@@ -14,7 +14,7 @@
   <!-- Barre de navigation (sera utile dès qu’on ajoute login/signup) -->
   <nav class="border-b border-slate-800">
     <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-      <a href="/" class="font-semibold">Shorty</a>
+      <a href="/" class="font-semibold">Shorty <sub>by OMGBA PAUL KEVIN</sub></a>
 
       <div class="flex gap-3 text-sm">
           {% if user.is_authenticated %}
@@ -31,5 +31,13 @@
   <main class="max-w-6xl mx-auto px-4 py-10">
     {% block content %}{% endblock %}
   </main>
+
+  <footer class="border-t border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <p>&copy; 2023 Shorty. Tous droits reservés.</p>
+      <p>Developed by <a href="https://github.com/OmgbakeviN">OMGBA PAUL KEVIN</a></p>
+      <p>Version 1.0.0</p>
+    </div>
+  </footer>
 </body>
 </html>
